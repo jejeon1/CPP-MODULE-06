@@ -130,6 +130,8 @@ bool ScalarConverter::isDouble(const std::string& literal)
 
 bool ScalarConverter::isPseudo(const std::string& literal)
 {
+	if (literal == "inf" || literal == "inff")
+		return true;
 	if (literal == "-inf" || literal == "-inff")
 		return true;
 	if (literal == "+inf" || literal == "+inff")
@@ -220,7 +222,14 @@ void ScalarConverter::convert(const std::string& literal)
 	}
 	else if (ScalarConverter::isPseudo(literal))
 	{
-		if (literal == "-inf" || literal == "-inff")
+		if (literal == "inf" || literal == "inff")
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: inff" << std::endl;
+			std::cout << "double: inf" << std::endl;
+		}
+		else if (literal == "-inf" || literal == "-inff")
 		{
 			std::cout << "char: impossible" << std::endl;
 			std::cout << "int: impossible" << std::endl;
